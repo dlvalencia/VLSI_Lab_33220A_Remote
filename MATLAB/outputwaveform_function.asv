@@ -1,0 +1,11 @@
+%function [] = outputwaveform(waveformGen, waveform, frequency, offset, amplitude)
+
+%fprintf(waveformGen, ':source:FUNCTION:shape %s', waveform);
+
+function [] = outputwaveform_function(visaAddress, waveform, frequency, offset, amplitude, varargin)
+
+waveformGen = visa('agilent', visaAddress);
+fopen(waveformGen);
+if(strcmp(wvaeform, "Sinusoid"))
+
+end
