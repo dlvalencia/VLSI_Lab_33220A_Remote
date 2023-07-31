@@ -1,25 +1,36 @@
 %function [] = outputwaveform(waveformGen, waveform, frequency, offset, amplitude)
 
 %fprintf(waveformGen, ':source:FUNCTION:shape %s', waveform);
-outputwaveform_function1('TCPIP0::130.191.161.194::inst0::INSTR', 'RAMP', 1114, 1, 2, 2);
 
-function [] = outputwaveform_function1(visaAddress, waveform, frequency, offset, amplitude, varargin)
+%outputwaveform_function('TCPIP0::130.191.161.194::inst0::INSTR', 'SINUSOID', 222, 1, 2, 70);
 
-if(nargin == 6)
-        temp = varargin{1,1};
-end
+function errorMessage = outputwaveform_function(visaAddress, waveform, frequency, offset, amplitude, varargin)
 
 fclose(instrfind);
+
 %visaAddress = 'TCPIP0::130.191.161.194::inst0::INSTR';
 waveformGen = visa('agilent', visaAddress);
 fopen(waveformGen);
 
+if(nargin ~= 5)
+        property = varargin{1,1};
+
+        if(strcmp(waveform, "SINUSOID"))
+            errorMessage = outputSinusoid(waveformGen, frequency, offset, amplitude);
+        elseif(strcmp(waveform, "SQUARE"))
+            errorMessage = outputSquare(waveformGen, frequency, offset, amplitude, property);
+        elseif(strcmp(waveform, "RAMP"))
+            errorMessage = outputRamp(waveformGen, frequency, offset, amplitude, property);
+        end
+        return;
+end
+
     if(strcmp(waveform, "SINUSOID"))
-        outputSinusoid(waveformGen, frequency, offset, amplitude, temp);
+        errorMessage = outputSinusoid(waveformGen, frequency, offset, amplitude);
     elseif(strcmp(waveform, "SQUARE"))
-        outputSquare(waveformGen, frequency, offset, amplitude, temp);
+        errorMessage = outputSquare(waveformGen, frequency, offset, amplitude);
     elseif(strcmp(waveform, "RAMP"))
-        outputRamp(waveformGen, frequency, offset, amplitude, temp);
+        errorMessage = outputRamp(waveformGen, frequency, offset, amplitude);
     end
 
 end
