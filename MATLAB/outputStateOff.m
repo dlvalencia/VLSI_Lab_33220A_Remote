@@ -1,0 +1,1 @@
+fprintf(waveformGen, ':output:state 0');
