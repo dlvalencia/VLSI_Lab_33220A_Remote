@@ -6,7 +6,7 @@ outputwaveform_function1('TCPIP0::130.191.161.194::inst0::INSTR', 'RAMP', 1114, 
 function [] = outputwaveform_function1(visaAddress, waveform, frequency, offset, amplitude, varargin)
 
 if(nargin == 6)
-        temp = varargin{1,1};
+    temp = varargin{1,1};
 end
 
 fclose(instrfind);
@@ -14,12 +14,12 @@ fclose(instrfind);
 waveformGen = visa('agilent', visaAddress);
 fopen(waveformGen);
 
-    if(strcmp(waveform, "SINUSOID"))
-        outputSinusoid(waveformGen, frequency, offset, amplitude, temp);
-    elseif(strcmp(waveform, "SQUARE"))
-        outputSquare(waveformGen, frequency, offset, amplitude, temp);
-    elseif(strcmp(waveform, "RAMP"))
-        outputRamp(waveformGen, frequency, offset, amplitude, temp);
-    end
+if(strcmp(waveform, "SINUSOID"))
+    outputSinusoid(waveformGen, frequency, offset, amplitude, temp);
+elseif(strcmp(waveform, "SQUARE"))
+    outputSquare(waveformGen, frequency, offset, amplitude, temp);
+elseif(strcmp(waveform, "RAMP"))
+    outputRamp(waveformGen, frequency, offset, amplitude, temp);
+end
 
 end
