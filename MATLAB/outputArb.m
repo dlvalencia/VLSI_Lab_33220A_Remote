@@ -2,13 +2,13 @@
 %breaks it up into pieces to send points to the function generator to
 %output the recorded waveform
 %An example of running this function is
-%outputArb(waveformGen, 24000, data);
+%outputArb(waveformGen, 24000, data, 1);
 
-function errorMessage = outputArb(waveformGen, sampleRate, data)
+function errorMessage = outputArb(waveformGen, sampleRate, data, channel)
 
-inmax = max(data);
-inmin = min(data);
-dataSize = size(data,2);
+inmax = max(data(channel,1:end));
+inmin = min(data(channel,1:end));
+dataSize = size(data(channel,1:end),2);
 
 %dealing with sample rate
 
@@ -22,7 +22,7 @@ fprintf(waveformGen, 'OUTPUT:STATE 1');
 for i = 0:loopVariable
 
 in = i*rate;
-outData = data(1, 1 + in : in + rate);
+outData = data(channel, 1 + in : in + rate);
 outData = rescale(outData,-1,1,"InputMin",inmin,"InputMax",inmax); 
 allOneString = sprintf('%1.6f,', outData');
 allOneString = allOneString(1:end-1); % strip final comma
@@ -44,7 +44,7 @@ end
 
 %remainder
 if remainder ~= 0
-outData = data(1, end-remainder : end);
+outData = data(channel, end-remainder : end);
 outData = rescale(outData,-1,1,"InputMin",inmin,"InputMax",inmax); 
 allOneString = sprintf('%1.6f,', outData');
 allOneString = allOneString(1:end-1);
