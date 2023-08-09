@@ -27,16 +27,11 @@ outData = rescale(outData,-1,1,"InputMin",inmin,"InputMax",inmax);
 allOneString = sprintf('%1.6f,', outData');
 allOneString = allOneString(1:end-1); % strip final comma
 
-tic
 fprintf(waveformGen, 'DATA VOLATILE, %s', allOneString);
-toc
-
-%ver1 for volatile memory waveforms
-%trying to utilize the memory slots the save time for sending data
 
 %change to arb
 fprintf(waveformGen, ':source:function:shape:user volatile');
-fprintf(waveformGen, ':apply:user %d,0.25,0.5', 1/rateFreq);
+fprintf(waveformGen, ':apply:user %d,0.4,0.25', 1/rateFreq);
 %offset = 0.5V
 
 %condition for playing next 2s
@@ -48,14 +43,16 @@ end
 %recommended pause time is 1 cycle or more
 
 %remainder
+if remainder ~= 0
 outData = data(1, end-remainder : end);
 outData = rescale(outData,-1,1,"InputMin",inmin,"InputMax",inmax); 
 allOneString = sprintf('%1.6f,', outData');
 allOneString = allOneString(1:end-1);
 fprintf(waveformGen, 'DATA VOLATILE, %s', allOneString);
 fprintf(waveformGen, ':source:function:shape:user volatile');
-fprintf(waveformGen, ':apply:user %d,0.25,0.5', 1/rateFreq);
+fprintf(waveformGen, ':apply:user %d,0.4,0.25', 1/rateFreq);
 %offset = 0.5V
+end
 
 pause(3);
 
