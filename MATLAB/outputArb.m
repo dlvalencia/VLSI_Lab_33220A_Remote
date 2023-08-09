@@ -1,5 +1,5 @@
-%This function executes a data/variable imported/loaded into matlab a
-%breaks it up into pieces to send points to the function generator to
+%This function executes a channel of the data imported/loaded into matlab
+%and breaks it up into pieces to send points to the function generator to
 %output the recorded waveform
 %An example of running this function is
 %outputArb(waveformGen, 24000, data, 1);
