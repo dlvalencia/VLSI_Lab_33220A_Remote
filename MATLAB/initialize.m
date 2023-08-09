@@ -2,7 +2,7 @@ function [output1,output2,output3] = initialize
 try
     clc, clearvars;
 
-    fclose(instrfind);
+    %fclose(instrfind);
 
     objs = instrfind;
     if ~isempty(objs)
@@ -12,6 +12,9 @@ try
     visaAddress = 'TCPIP0::130.191.161.194::inst0::INSTR'; % Replace with your device address
     waveformGen = visa('agilent', visaAddress);
     waveformGen.outputBufferSize = 100e6;
+
+    waveformGen.inputBufferSize = 1000;
+
     fopen(waveformGen);
 
     output1 = waveformGen;
