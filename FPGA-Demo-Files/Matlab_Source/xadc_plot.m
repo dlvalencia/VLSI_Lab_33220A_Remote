@@ -6,7 +6,7 @@ if ~isempty(instrfindall)
 end
 software_buffer_size = 8192;
 %Open the port
-board_serial = serial('COM6', 'BaudRate', 115200, 'InputBufferSize', software_buffer_size*4);
+board_serial = serial('COM4', 'BaudRate', 115200, 'InputBufferSize', software_buffer_size*4);
 
 fopen(board_serial);
 
