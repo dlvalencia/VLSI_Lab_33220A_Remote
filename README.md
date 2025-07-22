@@ -13,3 +13,6 @@ We planned to use the memory to buy some time for uploading and outputing but it
 
 # Photos
 ![alt text](WARG_example_1.png)
+![alt text](WARG_example_2.png)
+![alt text](WARG_example_3.png)
+![alt text](WARG_example_4.png)
