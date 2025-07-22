@@ -10,3 +10,6 @@ Some files can be ignored, such as those test files.
 The 'memoryslot' file represents a testing version of utilizing the non-volatile memory feature in the function generator. However, it currently does not perform as intended. The 'outputArb' function offers better performance in this regard. The main issue with the 'memoryslot' function is its processing time. The process of uploading and copying data before waveform generation is time-intensive, leading to a longer gap between waveforms compared to the 'outputArb' function.
 
 We planned to use the memory to buy some time for uploading and outputing but it did not work.
+
+# Photos
+![alt text](WARG_example_1.png)
