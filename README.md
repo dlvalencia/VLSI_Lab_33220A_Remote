@@ -1,15 +1,46 @@
 # WaveformGen Agilent Remote GUI (WARG)
-A MATLAB Graphical User Interface Program to control the Agilent 33220A Function Generator
+A MATLAB GUI for Controlling the Agilent 33220A Function Generator
 
-This program/app enables users to generate various waveforms using a function generator. We have integrated the built-in waveforms of a function generator into the user interface, offering sine waves, square waves, and ramp waves. Additionally, users can adjust waveform characteristics like duty cycle and symmetry through the custom interface we've developed.
+## Overview
+WARG is a MATLAB-based graphical user interface that allows users to control the Agilent 33220A Function Generator via USB or LAN. It offers full access to the generator’s built-in waveform options and supports custom waveform uploads, making it a flexible and user-friendly tool for electrical engineering labs.
 
-You'll find examples and explanations for how each function is put into action within the MATLAB files. We've also included sample code that demonstrates how to run these functions in your command line in MATLAB
+This project was completed during a summer internship, where we successfully implemented all planned features and validated the tool as a proof of concept for user-programmable signal generator automation.
 
-Some files can be ignored, such as those test files. 
+## Features
+### Basic Tab
+- Select waveform type: Sine, Square, Ramp
 
-The 'memoryslot' file represents a testing version of utilizing the non-volatile memory feature in the function generator. However, it currently does not perform as intended. The 'outputArb' function offers better performance in this regard. The main issue with the 'memoryslot' function is its processing time. The process of uploading and copying data before waveform generation is time-intensive, leading to a longer gap between waveforms compared to the 'outputArb' function.
+- Adjust amplitude, offset, and frequency or period (linked control)
 
-We planned to use the memory to buy some time for uploading and outputing but it did not work.
+- Update parameters in real-time
+
+### Arbitrary Tab
+- Upload custom waveform data
+
+- Define custom sampling rates
+
+- Output via outputArb function for minimal delay
+
+### Connection Tab
+- Connect to multiple Agilent devices via USB or LAN
+
+- Dynamically switch between instruments
+
+### Technical Notes
+- Example scripts and command-line usage are provided in the repo
+
+- Some auxiliary test files can be ignored
+
+- The outputArb function is preferred for arbitrary waveforms
+
+- The memoryslot function was a prototype for using the generator’s non-volatile memory
+
+- Currently not recommended due to long upload and processing times
+
+## Educational Value
+This project was designed with accessibility and reusability in mind. The code has been shared publicly in hopes it will benefit other students and engineers working with legacy waveform generators in lab settings.
+
+
 
 # Photos
 ![alt text](WARG_example_1.png)
